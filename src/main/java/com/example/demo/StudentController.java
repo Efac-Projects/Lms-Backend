@@ -23,6 +23,16 @@ public class StudentController {
         return sRepo.save(student);
     }
 
+    @GetMapping("/students/{id}")
+    public Student getAStudent(@PathVariable Long id) {
+        return sRepo.findById(id).get();
+    }
+
+
+    @PutMapping("/students")
+    public Student updateStudent(@RequestBody Student student) {
+        return sRepo.save(student);
+    }
 }
 
 
