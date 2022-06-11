@@ -1,6 +1,9 @@
 package com.example.demo;
 
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
@@ -32,6 +35,12 @@ public class StudentController {
     @PutMapping("/students")
     public Student updateStudent(@RequestBody Student student) {
         return sRepo.save(student);
+    }
+
+    @DeleteMapping("/students/{id}")
+    public ResponseEntity<HttpStatus> deleteStudent(@PathVariable Long id) {
+        sRepo.deleteById(id);
+        return new ResponseEntity<HttpStatus>(HttpStatus.NO_CONTENT);
     }
 }
 
